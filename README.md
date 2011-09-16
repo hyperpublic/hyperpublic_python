@@ -14,6 +14,8 @@ A Python wrapper for the Hyperpublic REST API
 ----------------
 ###Working with Places
     from hyperpublic import *
+    
+    
     hp=Hyperpublic("YOUR_CLIENT_ID","YOUR_CLIENT_SECRET")
     #find a single place by ID
     place = hp.places.find("4dd53bffe2f2d70816000001")
