@@ -106,7 +106,10 @@ class Hyperpublic:
     def offers(self):
         """An object for creating/showing/finding Offers."""
         return Offers(self.client_id, self.client_secret)
-    
+    @property
+    def categories(self):
+        """An object for creating/showing/finding Categories."""
+        return Categories(self.client_id, self.client_secret)
     @property
     def people(self):
         """An object for creating/showing/finding People."""
@@ -116,7 +119,29 @@ class Hyperpublic:
     def things(self):
         """An object for creating/showing/finding Things."""
         return Things(self.client_id, self.client_secret)
+ 
+ 
+class Places(HyperpublicBase):
+    def __init__(self, client_id, client_secret):
+        HyperpublicBase.__init__(self, client_id, client_secret, "places")
     
+    def create(self, display_name, phone_number=None, website=None,
+               place_type=None, image_url=None, tags=[], address=None,
+               postal_code=None, lat=None, lon=None,category_id=None):
+        
+        params = locals()
+        del params['self']
+        return HyperpublicBase.create(self, **params)
+
+class Categories(HyperpublicBase):
+    def __init__(self, client_id, client_secret):
+        HyperpublicBase.__init__(self, client_id, client_secret, "categories")
+    
+    def find(self):
+        return HyperpublicBase.find(self,{})
+    
+
+   
 class Offers(HyperpublicBase):
     def __init__(self, client_id, client_secret):
         HyperpublicBase.__init__(self, client_id, client_secret, "offers")
@@ -130,20 +155,6 @@ class Offers(HyperpublicBase):
 	params['type']=offer_type;
         del params['self']
         return HyperpublicBase.find(self, **params)
-    
-
-
-class Places(HyperpublicBase):
-    def __init__(self, client_id, client_secret):
-        HyperpublicBase.__init__(self, client_id, client_secret, "places")
-    
-    def create(self, display_name, phone_number=None, website=None,
-               place_type=None, image_url=None, tags=[], address=None,
-               postal_code=None, lat=None, lon=None):
-        
-        params = locals()
-        del params['self']
-        return HyperpublicBase.create(self, **params)
 
 
 class People(HyperpublicBase):
