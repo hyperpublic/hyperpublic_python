@@ -76,6 +76,7 @@ class HyperpublicBase:
     
     def show(self, id):
         url = "%s/%s/%s" % (API_ENDPOINT, self.point_type, id)
+	print url
         return self._get(url)
     
     def find(self, lat=None, lon=None, address=None, postal_code=None,
@@ -97,11 +98,14 @@ class Hyperpublic:
     def __init__(self, client_id, client_secret):
         self.client_id = client_id
         self.client_secret = client_secret
-    
     @property
     def places(self):
-        """An object for creating/showing/finding Places."""
+        """An object for creating/showing/finding Offers."""
         return Places(self.client_id, self.client_secret)
+    @property
+    def offers(self):
+        """An object for creating/showing/finding Places."""
+        return Offers(self.client_id, self.client_secret)
     
     @property
     def people(self):
@@ -113,6 +117,21 @@ class Hyperpublic:
         """An object for creating/showing/finding Things."""
         return Things(self.client_id, self.client_secret)
     
+class Offers(HyperpublicBase):
+    def __init__(self, client_id, client_secret):
+        HyperpublicBase.__init__(self, client_id, client_secret, "offers")
+    
+    def find(self, lat=None, lon=None, address=None, source_id=None,
+             price=None,price_min=None,price_max=None,offer_type=None, radius=None, q=None, limit=None, 
+             page=None, page_size=None):
+        
+        
+	params = locals()
+	params['type']=offer_type;
+        del params['self']
+        return HyperpublicBase.find(self, **params)
+    
+
 
 class Places(HyperpublicBase):
     def __init__(self, client_id, client_secret):
