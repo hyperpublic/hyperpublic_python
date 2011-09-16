@@ -100,11 +100,11 @@ class Hyperpublic:
         self.client_secret = client_secret
     @property
     def places(self):
-        """An object for creating/showing/finding Offers."""
+        """An object for creating/showing/finding Places."""
         return Places(self.client_id, self.client_secret)
     @property
     def offers(self):
-        """An object for creating/showing/finding Places."""
+        """An object for creating/showing/finding Offers."""
         return Offers(self.client_id, self.client_secret)
     
     @property
