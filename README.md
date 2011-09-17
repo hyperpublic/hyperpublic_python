@@ -1,4 +1,4 @@
-H#The Hyperpublic Ruby Gem
+The Hyperpublic Python API
 ======================
 
 A Python wrapper for the Hyperpublic REST API
@@ -39,6 +39,21 @@ A Python wrapper for the Hyperpublic REST API
                 address = "416 w 13th st, New York, NY 10012",                                                        
                 lat = 40.7405, 
                 lon = -74.007)         
+
+##Working with Geodeals & Events
+    hp=Hyperpublic("YOUR_CLIENT_ID","YOUR_CLIENT_SECRET")
+    
+    # find a single offer by ID
+    offer = hp.offers.show("4e5e66f9a7ecee0001027a7b")
+
+    # find offers by a query
+    offers = hp.offers.find(q="bowling")
+
+    # find offers by a location
+    offers = hp.offers.find(lat =40.7, lon =74.0)
+
+    # find offers by multiple criteria
+    offers = hp.offers.find(source ="buywithme", price_min = 10, limit = 5)
 
 ###Working with Categories
       #get a list of categories
