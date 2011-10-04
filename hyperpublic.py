@@ -76,7 +76,6 @@ class HyperpublicBase:
     
     def show(self, id):
         url = "%s/%s/%s" % (API_ENDPOINT, self.point_type, id)
-	print url
         return self._get(url)
     
     def find(self, lat=None, lon=None, address=None, postal_code=None,
