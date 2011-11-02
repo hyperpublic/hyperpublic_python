@@ -50,7 +50,7 @@ A Python wrapper for the Hyperpublic REST API
     offers = hp.offers.find(q="bowling")
 
     # find offers by a location
-    offers = hp.offers.find(lat =40.7, lon =74.0)
+    offers = hp.offers.find(lat =40.7, lon =-74.0)
 
     # find offers by multiple criteria
     offers = hp.offers.find(source ="buywithme", price_min = 10, limit = 5)
